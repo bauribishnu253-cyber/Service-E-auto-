@@ -429,7 +429,10 @@
             alert("Please enter a valid 12-digit Transaction ID.");  
             return;  
         }  
-
+ // WhatsApp Trigger (PRIMARY & ONLY)
+const waUrl = `https://wa.me/917478578232?text=${encodeURIComponent(message)}`;
+window.location.href = waUrl;
+    }  
         const data = {  
             name: document.getElementById('name').value,  
             mobile: document.getElementById('mobile').value,  
@@ -451,4 +454,5 @@ window.location.href = waUrl;
 </body>  
 
 </html>  
+
 
