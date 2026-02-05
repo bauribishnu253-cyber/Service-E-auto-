@@ -272,8 +272,8 @@
 <body>  <header>  
     <div class="logo">Smart Jatra</div>  
     <div class="header-contact">  
-        <a href="tel:+917478578232"> 7478578232</a>  
-        <a href="mailto:smartjatra@gmail.com"> smartjatra@gmail.com</a>  
+        <a href="tel:+917478578232">📞 7478578232</a>
+<a href="mailto:smartjatra@gmail.com">✉️ smartjatra@gmail.com</a> 
     </div>  
 </header>  
 
@@ -300,7 +300,7 @@
                 <div class="input-group">  
                     <label>Pickup Point</label>  
                     <input type="text" id="pickup" placeholder="Enter pickup address" required>  
-                    <button type="button" class="location-btn" onclick="getLocation()"> Get My Current Location</button>  
+                    <button type="button" class="location-btn" onclick="getLocation()">📍 Get My Current Location</button>  
                     <input type="hidden" id="coords">  
                 </div>  
                 <div class="input-group">  
@@ -328,7 +328,7 @@
 
         <div id="payment-section">  
             <div class="warning-box">  
-                 50 Advance Payment is Mandatory for Booking  
+                 ₹50 Advance Payment is Mandatory for Booking  
             </div>  
             <p>Scan to pay via PhonePe / Any UPI app</p>  
             <img src="https://i.ibb.co/N6dz7TZP/IMG-20260129-WA0016.jpg" alt="Payment QR Code" class="qr-code">  
@@ -360,11 +360,13 @@
 <footer>  
     <h3 class="logo" style="margin-bottom: 10px;">Smart Jatra</h3>  
     <p style="color: var(--text-dim); margin-bottom: 20px;">Reliable E-Auto Service in Durgapur</p>  
-    <div class="footer-socials">  
-        <a href="https://wa.me/917478578232"> WhatsApp</a>  
-        <a href="mailto:smartjatra@gmail.com"> Email</a>  
-    </div>  
-    <p style="font-size: 0.7rem; margin-top: 30px; color: #475569;">� 2026 Smart Jatra. All Rights Reserved.</p>  
+      
+</div>
+    <div class="footer-socials">
+        <a href="https://wa.me/917478578232">💬 WhatsApp</a>
+<a href="mailto:smartjatra@gmail.com">✉️ Email</a>
+
+<p style="font-size: 0.7rem; margin-top: 30px; color: #475569;">© 2026 Smart Jatra. All Rights Reserved.</p>
 </footer>  
 
 <script>  
@@ -392,10 +394,14 @@
 
     // Form Submit  
     const bookingForm = document.getElementById('bookingForm');  
-    bookingForm.addEventListener('submit', (e) => {  
-        e.preventDefault();  
-        document.getElementById('distanceModal').style.display = 'flex';  
-    });  
+    bookingForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log("Confirm Booking clicked");
+
+    const modal = document.getElementById('distanceModal');
+    modal.style.display = 'flex';
+    modal.scrollIntoView({ behavior: "smooth" });
+});  
 
     function handleDistance(isLongDist) {  
         const modal = document.getElementById('distanceModal');  
@@ -437,4 +443,5 @@ window.location.href = waUrl;
 </script>
 
 </body>  
+
 </html>  
