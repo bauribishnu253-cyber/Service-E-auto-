@@ -423,11 +423,43 @@
         }  
     }  
 
-    function finalSubmit() {  
+         function finalSubmit() {  
         const txnId = document.getElementById('txnId').value;  
+        const coords = document.getElementById('coords').value; // GPS ভ্যালু নেওয়ার জন্য
+
         if (txnId.length !== 12 || isNaN(txnId)) {  
             alert("Please enter a valid 12-digit Transaction ID.");  
             return;  
+        }  
+
+        const data = {  
+            name: document.getElementById('name').value,  
+            mobile: document.getElementById('mobile').value,  
+            pickup: document.getElementById('pickup').value,  
+            destination: document.getElementById('destination').value,  
+            passengers: document.getElementById('passengers').value,  
+            datetime: document.getElementById('datetime').value,  
+            txn: txnId  
+        };  
+
+        // ম্যাপ লিঙ্ক তৈরি
+        const mapLink = coords ? `https://www.google.com/maps?q=${coords}` : "Not Captured";
+
+        const message = `Smart Jatra ⚡ New Booking\n\n` +
+                        `Name: ${data.name}\n` +
+                        `Mobile: ${data.mobile}\n` +
+                        `Pickup: ${data.pickup}\n` +
+                        `GPS Location: ${mapLink}\n` + 
+                        `Destination: ${data.destination}\n` +
+                        `Passengers: ${data.passengers}\n` +
+                        `Date & Time: ${data.datetime}\n` +
+                        `Transaction ID: ${data.txn}\n\n` +
+                        `Note: Customer confirmed distance is > 4.5 KM`;  
+
+        const waUrl = `https://wa.me/917478578232?text=${encodeURIComponent(message)}`;
+        window.location.href = waUrl;
+    }  
+ 
         }  
  // WhatsApp Trigger (PRIMARY & ONLY)
 const waUrl = `https://wa.me/917478578232?text=${encodeURIComponent(message)}`;
@@ -454,5 +486,6 @@ window.location.href = waUrl;
 </body>  
 
 </html>  
+
 
 
