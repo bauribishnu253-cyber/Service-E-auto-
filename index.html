@@ -386,15 +386,50 @@
     dtInput.max = maxDate.toISOString().slice(0, 16);  
 
     // Geolocation  
-    function getLocation() {  
-        if (navigator.geolocation) {  
-            navigator.geolocation.getCurrentPosition((pos) => {  
-                document.getElementById('coords').value = `${pos.coords.latitude}, ${pos.coords.longitude}`;  
-                document.getElementById('pickup').value = "Location Captured (Lat: " + pos.coords.latitude.toFixed(4) + ")";  
-                alert("Location captured successfully!");  
-            }, () => {  
-                alert("Unable to retrieve location. Please type address manually.");  
-            });  
+    <script>
+function getLocation() {
+    if (!navigator.geolocation) {
+        alert("❌ Your browser does not support GPS");
+        return;
+    }
+
+    const pickupInput = document.getElementById("pickup");
+    pickupInput.value = "📡 Detecting location...";
+
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const lat = position.coords.latitude.toFixed(6);
+            const lng = position.coords.longitude.toFixed(6);
+
+            document.getElementById("coords").value = `${lat},${lng}`;
+            pickupInput.value = `📍 GPS Location Captured (${lat}, ${lng})`;
+
+            alert("✅ Location captured successfully!");
+        },
+        (error) => {
+            pickupInput.value = "";
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("❌ Location permission denied. Please allow GPS access.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("❌ Location unavailable. Try again.");
+                    break;
+                case error.TIMEOUT:
+                    alert("❌ Location request timed out.");
+                    break;
+                default:
+                    alert("❌ Unable to fetch location.");
+            }
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 15000,
+            maximumAge: 0
+        }
+    );
+}
+</script>
         }  
     }  
 
@@ -423,14 +458,7 @@
         }  
     }  
 
-                 function finalSubmit() {  
-        const txnId = document.getElementById('txnId').value;  
-        const coords = document.getElementById('coords').value; 
 
-        if (txnId.length !== 12 || isNaN(txnId)) {  
-            alert("Please enter a valid 12-digit Transaction ID.");  
-            return;  
-        }  
 
         const data = {  
             name: document.getElementById('name').value,  
@@ -546,6 +574,7 @@ window.location.href = waUrl;
 </body>  
 
 </html>  
+
 
 
 
